@@ -1,0 +1,7 @@
+PROMPT
+
+here is the codebase for the task:
+
+CODEBASE
+
+return only the code without any additional content
