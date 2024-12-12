@@ -1,0 +1,1 @@
+Write a prompt for a single LLM request for testing purposes (Refer to README.md)

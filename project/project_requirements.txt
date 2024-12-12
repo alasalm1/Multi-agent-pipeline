@@ -1,0 +1,7 @@
+Write the project requirements here, for example:
+
+Requirement 1: Update provided code from version X to version Y
+
+Requrement 2: Replace function X to use library Y 
+
+Alternatively use normally project description, however the amount of tasks is then decided by the manager agent.
