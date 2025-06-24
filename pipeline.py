@@ -7,7 +7,7 @@ import time
 api_key = ''  # Write api key for OpenAI or an alternative service
 model = "gpt-4o-mini"  # Write LLM model version
 url = 'https://api.openai.com/v1/chat/completions'  # Write the URL for the provider service
-
+temperature = 0  # Temperature default setting
 
 def get_tasks(project_description):
     """ Get tasks from a manager agent"""
@@ -15,6 +15,7 @@ def get_tasks(project_description):
         'Authorization': 'Bearer ' + api_key,
         'Content-Type': 'application/json',
     }
+    
     conversation_history = []
     manager = open('agents/manager.txt', 'r').read()
     manager = manager.replace("PROJECT_DESCRIPTION", project_description)
@@ -22,6 +23,7 @@ def get_tasks(project_description):
     payload = {
         'model': model,
         'messages': conversation_history,
+        'temperature': temperature
     }
     tasks = \
         requests.post(url, headers=headers, data=json.dumps(payload), timeout=500).json()["choices"][0]["message"][
@@ -32,6 +34,7 @@ def get_tasks(project_description):
     payload = {
         'model': model,
         'messages': conversation_history,
+        'temperature': temperature
     }
 
     tasks = \
@@ -59,6 +62,7 @@ def task_pipeline(code, tasks, project_requirements):
         payload = {
             'model': model,
             'messages': conversation_history,
+            'temperature': temperature
         }
         task_prompt = \
             requests.post(url, headers=headers, data=json.dumps(payload), timeout=500).json()["choices"][0]["message"][
@@ -70,6 +74,7 @@ def task_pipeline(code, tasks, project_requirements):
         payload = {
             'model': model,
             'messages': conversation_history,
+            'temperature': temperature
         }
 
         new_code = \
@@ -105,6 +110,7 @@ def feedback_loop(old_code_1, new_code_1, project_description, task):
             payload = {
                 'model': model,
                 'messages': conversation_history_loop,
+                'temperature': temperature
             }
             remarks = \
                 requests.post(url, headers=headers, data=json.dumps(payload), timeout=500).json()["choices"][0][
@@ -119,6 +125,7 @@ def feedback_loop(old_code_1, new_code_1, project_description, task):
             payload = {
                 'model': model,
                 'messages': conversation_history_loop,
+                'temperature': temperature
             }
             remarks = \
                 requests.post(url, headers=headers, data=json.dumps(payload), timeout=500).json()["choices"][0][
@@ -136,6 +143,7 @@ def feedback_loop(old_code_1, new_code_1, project_description, task):
             payload = {
                 'model': model,
                 'messages': conversation_history_finalizer,
+                'temperature': temperature
             }
             old_code[0] = new_code[0]
             new_code[0] = \
@@ -161,6 +169,7 @@ def single_prompt(code, task_prompt):
     payload = {
         'model': model,
         'messages': conversation_history,
+        'temperature': temperature
     }
 
     new_code = \
