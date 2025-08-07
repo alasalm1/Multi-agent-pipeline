@@ -1,4 +1,4 @@
-Create detaied prompt for following coding task, which is a part of Project description. 
+Create detailed prompt for following coding task, which is a part of Project description. 
 
 task:
 
@@ -7,5 +7,6 @@ TASK
 project_description:
 
 PROJECT_DESCRIPTION
+
 
 Return only the prompt as answer.
