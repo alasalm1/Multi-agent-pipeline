@@ -11,7 +11,7 @@ URL = 'https://api.openai.com/v1/chat/completions'  # Write the URL for the prov
 FEEDBACK_DEPTH = 2 # The maximum feedback loop between a verifier and a finalizer agent
 LOG = True # Prints the phase of the update during the execution
 
-""" Headers; add more parameters if needed ex. effort"""
+""" Headers; add more parameters if needed"""
 HEADERS = {
         'Authorization': 'Bearer ' + API_KEY,
         'Content-Type': 'application/json',
